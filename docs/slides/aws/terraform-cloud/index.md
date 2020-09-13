@@ -4,12 +4,11 @@ count: false
 <br><br>
 ![:scale 60%](images/tf_aws.png)
 <br><br>
-# Terraform Cloud on AWS
+# Terraform Cloud for Business on AWS
 
 ???
-**Welcome to the Terraform Cloud on AWS workshop. This is a one day workshop that introduces free and paid features of Terraform Cloud (also Enterprise) using an AWS-based application for the tech labs. If you're brand new to Terraform you should try the Introduction to Terraform OSS on AWS Instruqt track before this one.**
+**Welcome to the Terraform workshop. Terraform is meant to automate the provisioning, compliance, and management of your infrastructure. And during this workshop you will experince how to do so through HashiCorp recently announced Terraform Cloud For Businees. Our workshop will consist of two parts: the main lecture, and practice labs that you are going to do in zoom breakout rooms. In the breakout rooms you will get a support from our experineced Solutions Engineers from HashiCorp.**
 
-**Terraform Cloud and Terraform Enterprise have almost identical feature sets so we'll be using Terraform Cloud as our training environment today.**
 
 INSTRUCTOR GUIDE LINK: https://github.com/hashicorp/field-workshops-terraform/blob/master/instructor-guides/all_terraform_cloud_INSTRUCTOR_GUIDE.md
 
@@ -43,19 +42,17 @@ layout: true
 ---
 name: Introductions
 # Introductions
-- Your Name
-- Job Title
-- Automation Experience
-- Favorite Text Editor
+- Name: Kseniia Ryuma
+- Job Title: Solution Engineer @HashiCorp
+- First time to be introduced to Terraform: 8 months ago
+- Favorite Text Editor: Visual Studio Code
 
 ???
-**Let's start with introductions. Give us your name, job title, any automation experience, and finally your favorite text editor. There are no wrong answers here. Except for Notepad. Notepad++ is ok though.**
+**Let's start with introductions. My name is Kseniia Ryuma and I am a Solution Engoneer at HashiCorp. During my proffesional carreer I had worked on Smart Contracts, Orcacle Cloud Integration platform, and about 8 months ago I was introduced to Terraform.**
 
-If your audience is less than 25 people you can quickly go through the room and ask everyone to introduce themselves. The text editor question is a fun ice breaker, and it also gives you a quick barometer on how skilled your students will be at writing and editing code.
+**Now I am going to show a poll where you can tell us how much you know Terraform. That answer will help us to get to know you better**
 
-**You don't need to be an expert at vi to use Terraform. Today during the hands-on labs we'll be using Visual Studio Code or vim to edit some files.**
-
-Now introduce yourself, tell a story, give the audience something to think about. If you don't have a story borrow someone else's: https://www.youtube.com/watch?v=h970ZBgKINg
+**For this workshop you don't need to be an expert in AWS or Terraform. All the material you need, to successfully complete labs, you are going to be given during the leacture, so pay attention:)**
 
 ---
 name: tfc-link-to-slide-deck
@@ -68,7 +65,7 @@ Follow along on your own computer at this link:
 ]
 
 ???
-**The first question we usually hear during these workshops is "Can we have the slide deck?" The answer is YES, and we've made it really easy to download. In fact, it's just a website. Open this link and you can follow along on your own laptop. Just use the arrow keys to navigate.**
+**The first question we usually hear during these workshops is "Can we have the slide deck?" The answer is YES, Just use this url to get an access to the slides.**
 
 ---
 name: Table-of-Contents
@@ -94,15 +91,18 @@ class: col-2
 ⚙️ Private Module Registry<br>
 🏗️ API Driven Workflows<br>
 <hr>
-5. Extra Resources<br>
+5. Terraform Cloud Business Tier<br>
+🤩 Self-hosted agents<br>
+🔑 SSO/SAML connect<br>
+<hr>
+6. Extra Resources<br>
 ⚗️ Bonus Lab<br>
 🌐 Useful Links
 </div>
 
 ???
-**This is our table of contents. We have a lot of ground to cover today. The workshop will alternate between lecture and lab exercise so we don't get bored and fall asleep. We'll be taking breaks roughly every 90 minutes, with a 45 minute break for lunch.**
+**This is our table of content. Yes, we have a lot of ground to cover today. The workshop will alternate between lecture and lab exercise so we don't get bored. After each topic, we are going to be redirected into breakout rooms were you can practise just covered topic.**
 
-Make sure your EAM or sponsor have arranged for lunch if presenting this as a full-day workshop.
 
 ---
 name: TFE-Chapter-1
@@ -124,9 +124,26 @@ name: terraform-user-journey
 https://www.hashicorp.com/resources/terraform-adoption-journey
 
 ???
-**Let's start with a typical Terraform User Journey. Our CTO Armon Dadgar will explain what the stages of Terraform adoption look like.**
+**We arw being asked a lot what is the diffrence between OSS, Cloud, and Enterorise solutions. For that reason, our CTO Armon Dadgar explains what the stages of Terraform adoption look like. In order to stay on track with our workshop material, you can watch this video at any, convinient for you time.**
 
-If you have a good sound setup, you can simply play Armon's video for your audience. Alternatively you should watch the video and learn how to do this whiteboard talk yourself.
+---
+name: Terraform Adoption
+.center[
+![:scale 95%](images/TF-OSS.png)
+]
+
+???
+**TF OSS**
+
+---
+
+name: TFE
+.center[
+![:scale 95%](images/TFC.png)
+]
+
+???
+**TFC**
 
 ---
 name: infrastructure-as-code
@@ -142,7 +159,7 @@ class: col-2
 ![Terraform Code on AWS](images/code_example.png)
 
 ???
-**At the core of Terraform is this idea of Infrastructure as Code. Instead of building things as a series of manual steps, or error-prone shell scripts that may or may not be tested and up to date, you express all your infrastructure build steps in this simple Domain Specific Language, or terraform. The official name for the Terraform config syntax is HashiCorp Config Language, or HCL. This language is easy for beginners and powerful for experts. Think of it as the DNA of your infrastructure.**
+**So, what is Terraform? Terraform allows infrastructure to be expressed as code. For those who does not know, Infrastructure as Code is a concept where you discribe your infrastructure in codified manner, and manage it through Virsion Control Tool - Github, Gitlab, for instance. One might ask, and what? Well, having a standart way to automate your infrastructure reduces series of manual steps, or error-prone shell scripts that may or may not be tested and up to date.  Using HashiCorp Configuration Language, as it is shown on the picture you can read what is goinbg to be provisoned. This language is easy for beginners and powerful for experts. Think of it as the DNA of your infrastructure.**
 
 This slide is here in case you have any brand new, or non-technical people who have never seen a terraform resource before.
 
@@ -156,7 +173,7 @@ name: multi-platform-compliance
 Terraform also integrates with on premise VMs or platform services.
 
 ???
-**Terraform Cloud and Enterprise can be used to build VMs in your data center, or AWS instances in the cloud, or both. You won't have to maintain two sets of tools to build on your hybrid cloud platforms.**
+**Terraform is platform agnostic tool, and as the result can be used to build VMs in your data center, or AWS instances in the cloud, or both. You won't have to maintain two sets of tools to build on your hybrid cloud platforms.**
 
 ---
 name: self-service-infra
@@ -214,7 +231,7 @@ Terraform Cloud/Enterprise is an application that provides the following feature
 * UI integration with VCS
 
 ???
-**As your organization begins to standardize on Terraform, you'll have different types of users. Most of you will become terraform experts, but there may be others who just want to build things. They can use the terraform code that folks like you have written. To make this process easy, we have a web application. You log on, click a button, and out pops your infrastructure.**
+**In order to keep truck of the changes of your infrastructure throough code, your team needs to have a VCS integration.**
 
 ---
 name: why-tfc-3
@@ -293,10 +310,10 @@ Terraform Cloud/Enterprise is an application that provides the following feature
 * Central state management
 * Private Module Registry
 * Sentinel policy enforcement
-* Single Sign-On (on-prem Terraform Enterprise only)
+* Single Sign-On / SAML
 
 ???
-**Terraform Enterprise also supports single sign-on using your own SAML provider. This allows you to quickly map users into your organization's teams and workspaces so they can become productive right away. This feature is only available for private Terraform Enterprise installations. We won't be covering SAML or single sign-on in today's workshop.**
+**SSO allows you to quickly map users into your organization's teams and workspaces so they can become productive right away.**
 
 ---
 name: why-tfc-8
@@ -327,7 +344,7 @@ name: terraform-cloud-enterprise
 The feature list for these two offerings is nearly identical. We will be using Terraform Cloud accounts for our lab exercises today.
 
 ???
-**If you're curious which one of these your company should adopt, the answer is Terraform Enterprise. Terraform Cloud, while convenient, is not suitable to high-volume environments or private data center infrastructure. We're using it for training because the feature set is nearly identical. In other words, everything you learn today will apply in your own Terraform Enterprise environment.**
+**HashiCorp Terraform Cloud is a SaaS offering while Enterprise is a self-hosted solution**
 
 Be well versed on the feature list and differences between cloud and enterprise. In particular, remember that TF Cloud limits you to one single concurrent terraform run, and it also can't reach into your private data center or cloud account.
 
@@ -983,6 +1000,32 @@ name: TFE-Chapter-5
 class: title
 
 # Chapter 5
+## Terraform Cloud Business Tier
+
+---
+name: TFC4B
+class: img-right
+
+# Terraform Cloud Business Tier:
+![](images/TFC4B.png)
+
+* Self-hosted agents to provision and manage private and on-premises resources
+* Single Sign-On (SSO) via Okta (Azure AD and Custom SAML coming soon) [demo](https://www.datocms-assets.com/2885/1597176101-tfc-sso.gif?fit=max&fm=gif&q=80&w=2500)
+* Audit logging API
+* Operational visibility via Terraform Cloud for Splunk app [screenshot](https://www.datocms-assets.com/2885/1597176025-splunkdash.png?fit=max&fm=png&q=80&w=2500)
+* Job concurrency
+* Support SLA
+
+
+???
+**Recently HashiCorp announced TFC4B. Here is the list of additional capabilities that you will get with that tier**
+
+
+---
+name: TFE-Chapter-5
+class: title
+
+# Chapter 6
 ## Bonus Lab & Extra Resources
 
 ---
