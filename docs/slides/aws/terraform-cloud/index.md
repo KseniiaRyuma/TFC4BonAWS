@@ -48,7 +48,7 @@ name: Introductions
 - Favorite Text Editor: Visual Studio Code
 
 ???
-**Let's start with introductions. My name is Kseniia Ryuma and I am a Solution Engoneer at HashiCorp. During my proffesional carreer I had worked on Smart Contracts, Orcacle Cloud Integration platform, and about 8 months ago I was introduced to Terraform.**
+**Let's start with introductions. My name is Kseniia Ryuma and I am a Solution Engineer at HashiCorp. During my proffesional carreer I had worked on Smart Contracts, Orcacle Cloud Integration platform, and about 8 months ago I was introduced to Terraform.**
 
 **Now I am going to show a poll where you can tell us how much you know Terraform. That answer will help us to get to know you better**
 
@@ -124,7 +124,26 @@ name: terraform-user-journey
 https://www.hashicorp.com/resources/terraform-adoption-journey
 
 ???
-**We arw being asked a lot what is the diffrence between OSS, Cloud, and Enterorise solutions. For that reason, our CTO Armon Dadgar explains what the stages of Terraform adoption look like. In order to stay on track with our workshop material, you can watch this video at any, convinient for you time.**
+**We are being asked a lot what is the diffrence between OSS, Cloud, and Enterorise solutions. For that reason, our CTO Armon Dadgar explains what the stages of Terraform adoption look like. In order to stay on track with our workshop material, you can watch this video at any, convinient for you time.**
+
+---
+
+name: infrastructure-as-code
+class: col-2
+# Infrastructure as Code
+
+* Terraform code is written in HCL
+* Stop building things by hand
+* Put everything into repeatable Terraform configuration
+* All build steps are now expressed as code
+* If you ever have to rebuild something, it's much easier!
+
+![Terraform Code on AWS](images/code_example.png)
+
+???
+**So, what is Terraform? Terraform allows infrastructure to be expressed as code. For those who does not know, Infrastructure as Code is a concept where you discribe your infrastructure in codified manner, and manage it through Virsion Control Tool - Github, Gitlab, for instance. One might ask, and what? Well, having a standart way to automate your infrastructure reduces series of manual steps, or error-prone shell scripts that may or may not be tested and up to date.  Using HashiCorp Configuration Language, as it is shown on the picture you can read what is goinbg to be provisoned. This language is easy for beginners and powerful for experts. Think of it as the DNA of your infrastructure.**
+
+This slide is here in case you have any brand new, or non-technical people who have never seen a terraform resource before.
 
 ---
 name: Terraform Adoption
@@ -144,24 +163,6 @@ name: TFE
 
 ???
 **TFC**
-
----
-name: infrastructure-as-code
-class: col-2
-# Infrastructure as Code
-
-* Terraform code is written in HCL
-* Stop building things by hand
-* Put everything into repeatable Terraform configuration
-* All build steps are now expressed as code
-* If you ever have to rebuild something, it's much easier!
-
-![Terraform Code on AWS](images/code_example.png)
-
-???
-**So, what is Terraform? Terraform allows infrastructure to be expressed as code. For those who does not know, Infrastructure as Code is a concept where you discribe your infrastructure in codified manner, and manage it through Virsion Control Tool - Github, Gitlab, for instance. One might ask, and what? Well, having a standart way to automate your infrastructure reduces series of manual steps, or error-prone shell scripts that may or may not be tested and up to date.  Using HashiCorp Configuration Language, as it is shown on the picture you can read what is goinbg to be provisoned. This language is easy for beginners and powerful for experts. Think of it as the DNA of your infrastructure.**
-
-This slide is here in case you have any brand new, or non-technical people who have never seen a terraform resource before.
 
 ---
 name: multi-platform-compliance
@@ -328,7 +329,7 @@ Terraform Cloud/Enterprise is an application that provides the following feature
 * Central state management
 * Private Module Registry
 * Sentinel policy enforcement
-* Single Sign-On (on-prem Terraform Enterprise only)
+* Single Sign-On
 * Secure API credentials
 
 ???
