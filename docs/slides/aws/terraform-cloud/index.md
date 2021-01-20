@@ -103,7 +103,7 @@ class: title
 name: terraform-user-journey
 # The Terraform User Journey
 ![:scale 95%](images/addoption.png)
-]
+
 
 https://www.hashicorp.com/resources/terraform-adoption-journey
 
@@ -115,7 +115,7 @@ https://www.hashicorp.com/resources/terraform-adoption-journey
 ---
 name: terraform-user-journey
 ![:scale 95%](images/use-case.png)
-]
+
 
 ???
 
@@ -204,7 +204,7 @@ class: img-right
 # Terraform Cloud
 ![](images/tfc-gui.png)
 
-Terraform Cloud/Enterprise is an application that provides the following features:
+Terraform Cloud is an application that provides the following features:
 
 ???
 **Let's go through a quick bullet list of Terraform Cloud features and why they matter.**
