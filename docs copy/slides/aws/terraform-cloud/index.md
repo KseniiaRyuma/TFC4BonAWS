@@ -2,15 +2,13 @@ name: Intro-to-Terraform-Cloud
 class: center,middle,title-slide
 count: false
 <br><br>
-![:scale 60%](images/tf_aws.png)
+![:scale 60%](images/tf_hc.png)
 <br><br>
-# Terraform Cloud for Business on AWS
+# Infrastructure management and compliance
 
 ???
-**Welcome to the Terraform workshop. Terraform is meant to automate the provisioning, compliance, and management of your infrastructure. And during this workshop you will experince how to do so through HashiCorp recently announced Terraform Cloud For Businees. Our workshop will consist of two parts: the main lecture, and practice labs that you are going to do in zoom breakout rooms. In the breakout rooms you will get a support from our experineced Solutions Engineers from HashiCorp.**
+**.**
 
-
-INSTRUCTOR GUIDE LINK: https://github.com/hashicorp/field-workshops-terraform/blob/master/instructor-guides/all_terraform_cloud_INSTRUCTOR_GUIDE.md
 
 INSTRUCTOR NOTE: Welcome to Terraform Cloud on AWS. This slide deck is written entirely in Markdown language, which means you can make edits or additions then submit a pull request to add your changes to the master copy. To make edits to the slide deck simply fork this repository, edit the Markdown file(s), and submit a pull request with your changes. You can easily test a local copy of the slide deck with this python one-liner:
 
@@ -38,6 +36,21 @@ layout: true
 - Copyright © 2020 HashiCorp
 - ![:scale 100%](https://hashicorp.github.io/field-workshops-assets/assets/logos/HashiCorp_Icon_Black.svg)
 ]
+
+---
+name: Introductions
+# Introductions
+- Name: Kseniia Ryuma
+- Job Title: Solution Engineer @HashiCorp
+- First time to be introduced to Terraform: 8 months ago
+- Favorite Text Editor: Visual Studio Code
+
+???
+**Let's start with introductions. My name is Kseniia Ryuma and I am a Solution Engineer at HashiCorp. During my proffesional carreer I had worked on Smart Contracts, Orcacle Cloud Integration platform, and about 8 months ago I was introduced to Terraform.**
+
+**Now I am going to show a poll where you can tell us how much you know Terraform. That answer will help us to get to know you better**
+
+**For this workshop you don't need to be an expert in AWS or Terraform. All the material you need, to successfully complete labs, you are going to be given during the leacture, so pay attention:)**
 
 ---
 name: tfc-link-to-slide-deck
@@ -102,24 +115,17 @@ class: title
 ---
 name: terraform-user-journey
 # The Terraform User Journey
-![:scale 95%](images/addoption.png)
+.center[
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FWpCQar9dYg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 ]
 
 https://www.hashicorp.com/resources/terraform-adoption-journey
 
 ???
-**Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.**
-
 **We are being asked a lot what is the diffrence between OSS, Cloud, and Enterorise solutions. For that reason, our CTO Armon Dadgar explains what the stages of Terraform adoption look like. In order to stay on track with our workshop material, you can watch this video at any, convinient for you time.**
 
 ---
-name: terraform-user-journey
-![:scale 95%](images/use-case.png)
-]
 
-???
-
----
 name: infrastructure-as-code
 class: col-2
 # Infrastructure as Code
@@ -136,6 +142,25 @@ class: col-2
 **So, what is Terraform? Terraform allows infrastructure to be expressed as code. For those who does not know, Infrastructure as Code is a concept where you discribe your infrastructure in codified manner, and manage it through Virsion Control Tool - Github, Gitlab, for instance. One might ask, and what? Well, having a standart way to automate your infrastructure reduces series of manual steps, or error-prone shell scripts that may or may not be tested and up to date.  Using HashiCorp Configuration Language, as it is shown on the picture you can read what is goinbg to be provisoned. This language is easy for beginners and powerful for experts. Think of it as the DNA of your infrastructure.**
 
 This slide is here in case you have any brand new, or non-technical people who have never seen a terraform resource before.
+
+---
+name: Terraform Adoption
+.center[
+![:scale 95%](images/TF-OSS.png)
+]
+
+???
+**TF OSS**
+
+---
+
+name: TFE
+.center[
+![:scale 95%](images/TFC.png)
+]
+
+???
+**TFC**
 
 ---
 name: multi-platform-compliance
@@ -163,40 +188,25 @@ Enable users to build what they need without running up a huge bill or putting y
 **Terraform Cloud encourages safe provisioning via reusable modules and policy enforcement. Now users can build exactly what they need to do their jobs without breaking things or putting your organization at risk. A slow and cumbersome approval process is no longer required because the automation enforces best practices without manual code reviews.**
 
 ---
-name: Best Practice to Manage Infrastructure
-# Best Practice to Manage Infrastructure
+name: terraform-cloud-what-is-it
+# Terraform Cloud - The Big Picture
+
 .center[
-![:scale 95%](images/workflow.png)
+![:scale 90%](images/cloud_overview_aws.png)
 ]
 
 ???
-**In this diagram you can see how Terraform Platform allows diverse team members collaborate on different part of infrastructure. That allows - Automated, self-service, and compliant environment provisioning. As Terraform is a platform agnostic tool, you can perform deployments in any cloud provider and service, allowing your organization to quickly leverage new technology with the same learned, secured, audited, and governed workflow.**
+**This slide shows the end state of our workshop. Over on the left our infrastructure folks have created some reusable modules that the rest of our users can implement in their own terraform code. These modules ensure that infrastructure components like networks and VMs get built correctly every time, and they also make it easy for the user to build the "right stuff" on their own.**
 
+**In the next stage our user is writing terraform code and checking it into a Version Control System. This ensures that each and every change meant for production is recorded and reviewed. This is so important. It requires discipline and cooperation from all of your devops and infrastructure admins. When new code is committed to the master branch it triggers a plan in Terraform Cloud (or Enterprise)**
 
----
-name: Terraform Adoption
-.center[
-![:scale 95%](images/cli.png)
-]
+**Think of Terraform Cloud as a remote execution and state management platform for Terraform. Now you're not running terraform on your laptop like it's the wild west of cloud provisioning; instead all terraform runs happen in secure docker containers that run on our SaaS platform, or in your own data center. This allows you to encrypt and secure all your API keys, variables, and terraform state files. Access is granted only to authorized users.**
 
-???
-**TF OSS**
+**All your terraform state files are safely stored and encrypted on the server side. Any time you need to make a change to any of your infrastructure, Terraform knows the last state it was in and can build incrementally based on what has changed. Need to add more instances to a cluster? No problem, terraform can do that for you without a complete tear-down and rebuild.**
 
----
+**Before every terraform apply, you can run Sentinel policy checks against the proposed infrastructure plan to catch any policy violations. For example you might not want the devs creating super XL instances that cost a lot of money to run. You can write a simple rule that restricts developer workspaces to only using m3.medium sized instances, unless they get special permission for more.**
 
-name: TFE
-.center[
-![:scale 95%](images/TFC.png)
-]
-
-???
-**Table of Contents 1. OSS to Cloud/Enterprise 🌥️ Terraform Cloud Overview 👨🏽‍🏫 Review the Basics 🔗 Configure Remote State**
-
-**2. Security and RBACs 🔐 Protect Sensitive Variables 🛡️ Work With Access Controls**
-
-**3. VCS & Policy Enforcement 🕸️ Connect to VCS 👬 Collaboration with VCS 👮 Sentinel Policy Enforcement**
-
-**4. Terraform Modules & API ⚙️ Private Module Registry 🏗️ API Driven Workflows**
+**Role-based access controls allow different types of users to interact with Terraform cloud according to their level of access. You might have super admins who can control everything in the organization, then regular users who can run terraform but only in dev environments. Another group might be able to push changes to production, while some users may have read-only access. Terraform Cloud/Enterprise is a true multi-tenant application.**
 
 ---
 name: why-tfc-1
@@ -215,7 +225,7 @@ class: img-right
 # Terraform Cloud
 ![](images/tfc-gui.png)
 
-Terraform Cloud is an application that provides the following features:
+Terraform Cloud/Enterprise is an application that provides the following features:
 
 * UI integration with VCS
 
@@ -228,7 +238,7 @@ class: img-right
 # Terraform Cloud
 ![](images/tfc-gui.png)
 
-Terraform Cloud is an application that provides the following features:
+Terraform Cloud/Enterprise is an application that provides the following features:
 
 * UI integration with VCS
 * API driven workflows
@@ -244,7 +254,7 @@ class: img-right
 # Terraform Cloud
 ![](images/tfc-gui.png)
 
-Terraform Cloud is an application that provides the following features:
+Terraform Cloud/Enterprise is an application that provides the following features:
 
 * UI integration with VCS
 * API driven workflows
@@ -259,7 +269,7 @@ class: img-right
 # Terraform Cloud
 ![](images/tfc-gui.png)
 
-Terraform Cloud is an application that provides the following features:
+Terraform Cloud/Enterprise is an application that provides the following features:
 
 * UI integration with VCS
 * API driven workflows
@@ -275,7 +285,7 @@ class: img-right
 # Terraform Cloud
 ![](images/tfc-gui.png)
 
-Terraform Cloud is an application that provides the following features:
+Terraform Cloud/Enterprise is an application that provides the following features:
 
 * UI integration with VCS
 * API driven workflows
@@ -292,7 +302,7 @@ class: img-right
 # Terraform Cloud
 ![](images/tfc-gui.png)
 
-Terraform Cloud is an application that provides the following features:
+Terraform Cloud/Enterprise is an application that provides the following features:
 
 * UI integration with VCS
 * API driven workflows
@@ -310,7 +320,7 @@ class: img-right
 # Terraform Cloud
 ![](images/tfc-gui.png)
 
-Terraform Cloud is an application that provides the following features:
+Terraform Cloud/Enterprise is an application that provides the following features:
 
 * UI integration with VCS
 * API driven workflows
@@ -723,6 +733,22 @@ Terraform Cloud integrates with most common Version Control Systems.
 **Make sure you don't confuse git (the version control system) with GitHub (a web-based application containing the world's largest collection of git repositories). What are some other flavors of git? Bitbucket, GitLab are both also supported in Terraform Cloud. Today you'll be working with GitHub but you can integrate with any of the major git vendor software.**
 
 ---
+name: tfc-infra-as-code-workflow
+class: img-left
+# VCS Integration with Terraform Cloud
+
+![:scale 70%](images/git_noobs.png)
+
+Terraform Cloud can directly integrate with source code repos in GitHub Enterprise, Gitlab, and Bitbucket. This allows you to build simple DevOps workflows with code reviews, testing and approvals.
+
+https://xkcd.com/1597/
+
+For this workshop you'll only need four or five git commands.
+
+???
+**If you've never used git before, don't worry. We are only going to be using four or five basic commands. And as our friends at XKCD have pointed out, you can always wipe everything clean and clone a fresh copy of the code.**
+
+---
 name: multi-user-collaboration
 class: img-right-full
 # User Collaboration
@@ -980,15 +1006,14 @@ name: TFC4B
 class: img-right
 
 # Terraform Cloud Business Tier:
-## Advanced Security, Compliance, and Governance
 ![](images/TFC4B.png)
 
-* Self-hosted agents
-* Single Sign-On (SSO)
+* Self-hosted agents to provision and manage private and on-premises resources
+* Single Sign-On (SSO) via Okta (Azure AD and Custom SAML coming soon) [demo](https://www.datocms-assets.com/2885/1597176101-tfc-sso.gif?fit=max&fm=gif&q=80&w=2500)
 * Audit logging API
+* Operational visibility via Terraform Cloud for Splunk app [screenshot](https://www.datocms-assets.com/2885/1597176025-splunkdash.png?fit=max&fm=png&q=80&w=2500)
 * Job concurrency
 * Support SLA
-* Splunk Integration
 
 
 ???
