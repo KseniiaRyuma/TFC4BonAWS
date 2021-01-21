@@ -130,6 +130,7 @@ name: terraform-user-journey
 
 
 ???
+
 ---
 name: terraform-user-journey
 ![:scale 95%](images/use-case.png)
