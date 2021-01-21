@@ -114,6 +114,19 @@ https://www.hashicorp.com/resources/terraform-adoption-journey
 
 ---
 name: terraform-user-journey
+![:scale 95%](images/process.png)
+
+
+???
+**To address these challenges, the teams must ask the following questions:**
+
+**People. How can we enable a team for a multi-cloud reality, where skills can be applied consistently regardless of target environment?**
+**Process. How do we position central IT services as a self-service enabler of speed, versus a ticket-based gatekeeper of control, while retaining compliance and governance?**
+**Tools. How do we best unlock the value of the available capabilities of the cloud providers in pursuit of better customer and business value?**
+
+
+---
+name: terraform-user-journey
 ![:scale 95%](images/use-case.png)
 
 
