@@ -114,7 +114,7 @@ https://www.hashicorp.com/resources/terraform-adoption-journey
 
 ---
 name: terraform-user-journey
-![:scale 95%](images/process.png)
+![:scale 95%](images/before.png)
 
 
 ???
@@ -124,7 +124,12 @@ name: terraform-user-journey
 **Process. How do we position central IT services as a self-service enabler of speed, versus a ticket-based gatekeeper of control, while retaining compliance and governance?**
 **Tools. How do we best unlock the value of the available capabilities of the cloud providers in pursuit of better customer and business value?**
 
+---
+name: terraform-user-journey
+![:scale 95%](images/after.png)
 
+
+???
 ---
 name: terraform-user-journey
 ![:scale 95%](images/use-case.png)
